@@ -32,6 +32,15 @@ void Application::Run()
 	SetTargetFPS(60);
 	SetExitKey(0);
 
+
+	// WEIRD BUG:
+	// ------------------------------------------------------------------------------------------------------
+	// With this version of raylib (gcc and emscripten version)
+	// DrawTextEx failes to use the correct font unless the origional DrawText is called at least 1 time prior
+	// Here we are Calling DrawText so that the future DrawTextEx methods will render correctly
+	// using a loop to render twice, for some reason, running the below a single time will not fully render
+	// the entire string.
+	// ------------------------------------------------------------------------------------------------------
 	for (int i = 0; i < 2; i++)
 	{
 		BeginDrawing();
@@ -39,6 +48,8 @@ void Application::Run()
 		DrawText("Loading", 10, 10, 48, GRAY);
 		EndDrawing();
 	}
+	// End Weird Bug Hack!
+	// ------------------------------------------------------------------------------------------------------
 	
 
 	m_game->Load();

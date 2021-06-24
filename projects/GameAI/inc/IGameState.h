@@ -60,18 +60,3 @@ protected:
 private:
 };
 
-
-template<typename T>
-class TIGameState : public IGameState
-{
-public:
-
-	TIGameState(T* pApp) : m_pApp(pApp), IGameState() { }
-	virtual ~TIGameState() {}
-
-	T* GetApplication() { return m_pApp; }
-
-protected:
-
-	T* m_pApp;
-};
